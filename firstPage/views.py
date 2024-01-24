@@ -3,7 +3,6 @@ from django.template import loader
 from firstPage.models import ipl
 from django.db.models import Count
 from django.http import HttpResponse, JsonResponse
-import json
 
 
 def main_page(request):
@@ -25,7 +24,7 @@ def graph_view_api(request):
 
     for team in teams: 
         teamCount[team] = [0]*len(seasons)
-    print(teamCount)
+    # print(teamCount)
 
     data_list1 = ipl.objects.values("team1", "season").annotate(matches=Count("id"))
     data_list2 = ipl.objects.values("team2", "season").annotate(matches=Count("id"))
@@ -37,7 +36,7 @@ def graph_view_api(request):
     for data in data_list2:
         teamCount[data["team2"]][seasons.index(data["season"])] += data["matches"]
     
-    print(teamCount)
+    # print(teamCount)
 
     return JsonResponse({
         "status": "sucess",

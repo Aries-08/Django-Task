@@ -18,8 +18,8 @@
       const ctx = document.getElementById("myChart");
       const autocolors = window["chartjs-plugin-autocolors"];
       Chart.register(autocolors);
-
-      fetch("http://localhost:8000/graph1api/")
+ 
+      fetch("http://127.0.0.1:8000/graph1api/")
         .then((response) => response.json())
         .then((data) => {
           data = data.data;
